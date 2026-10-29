@@ -1,0 +1,9 @@
+{
+  "name": "outfitai",
+  "version": "0.5.1",
+  "private": true,
+  "description": "Extensión de Chrome (MV3) sin dependencias de ejecución. jsdom solo se usa opcionalmente para las pruebas del extractor.",
+  "scripts": {
+    "test": "node --test test/core.test.js test/extractor.test.js test/popup.test.js test/browser.test.js"
+  }
+}

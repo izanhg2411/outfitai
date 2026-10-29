@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "OutfitAI",
+  "version": "0.5.1",
+  "description": "Crea outfits completos con los productos de la tienda que estás viendo y recoge por ti las demás secciones (con tu permiso), según tu estilo y tu presupuesto. Todo se procesa en local.",
+  "minimum_chrome_version": "116",
+  "action": {
+    "default_title": "OutfitAI"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "sidePanel"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

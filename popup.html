@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>OutfitAI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>OutfitAI</h1>
+    <span id="storeBadge" class="badge" hidden></span>
+  </header>
+
+  <form id="prefs" novalidate autocomplete="off">
+    <div class="grid">
+      <label>Estilo
+        <select id="style"></select>
+      </label>
+      <label>Presupuesto total (€)
+        <input id="budget" type="number" min="10" max="5000" step="1" inputmode="decimal">
+      </label>
+      <label>Altura (cm)
+        <input id="height" type="number" min="120" max="230" step="1" inputmode="numeric">
+      </label>
+      <label>Peso (kg)
+        <input id="weight" type="number" min="30" max="250" step="1" inputmode="numeric">
+      </label>
+      <label>Zapatillas (talla EU)
+        <input id="shoeSize" type="number" min="34" max="50" step="0.5" inputmode="decimal">
+      </label>
+      <label>Talla de ropa (opcional)
+        <select id="clothingSize">
+          <option value="">—</option>
+          <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+      </label>
+    </div>
+    <label class="full">Colores preferidos (opcional)
+      <input id="colors" type="text" maxlength="80" placeholder="negro, blanco, beige">
+    </label>
+    <fieldset id="wantedBox">
+      <legend>Prendas deseadas</legend>
+      <label class="chk"><input type="checkbox" name="wanted" value="camiseta"> Camisetas</label>
+      <label class="chk"><input type="checkbox" name="wanted" value="sudadera"> Sudaderas</label>
+      <label class="chk"><input type="checkbox" name="wanted" value="pantalon"> Pantalones</label>
+      <label class="chk"><input type="checkbox" name="wanted" value="chaqueta"> Chaquetas</label>
+      <label class="chk"><input type="checkbox" name="wanted" value="zapatillas"> Zapatillas</label>
+      <label class="chk"><input type="checkbox" name="wanted" value="accesorio"> Accesorios</label>
+    </fieldset>
+    <label class="chk auto"><input type="checkbox" id="autoCollect"> Recoger automáticamente las demás secciones de la tienda (pantalones, zapatillas…)</label>
+    <div id="errors" class="msg error" role="alert" hidden></div>
+    <div class="row">
+      <button type="submit" id="create" class="primary">Crear mi outfit</button>
+      <span id="saved" class="saved" hidden>Preferencias guardadas</span>
+    </div>
+  </form>
+
+  <section id="status" class="msg" hidden></section>
+
+  <section id="result" hidden>
+    <h2 id="resultTitle">Tu outfit</h2>
+    <div class="tabs" id="viewTabs" role="tablist">
+      <button type="button" id="tabList" class="tab active" role="tab" aria-selected="true">Lista</button>
+      <button type="button" id="tabPreview" class="tab" role="tab" aria-selected="false">Vista previa del outfit</button>
+    </div>
+    <ul id="items" class="items"></ul>
+    <div id="preview" class="preview" hidden></div>
+    <div id="totals" class="totals"></div>
+    <div id="notes"></div>
+    <div class="row">
+      <button type="button" id="addCart" class="primary">Añadir a la cesta</button>
+    </div>
+    <div class="row"><button type="button" id="cartStop" hidden>Detener</button></div>
+    <div id="cartStatus" class="msg" hidden></div>
+    <details id="cartDiag" hidden>
+      <summary>Detalle técnico del último «Añadir a la cesta»</summary>
+      <pre id="cartDiagText" class="diag"></pre>
+      <button type="button" id="cartDiagCopy" class="link">Copiar detalle</button>
+    </details>
+    <div class="row">
+      <button type="button" id="next">Generar otro outfit</button>
+      <button type="button" id="refresh">Actualizar productos</button>
+    </div>
+  </section>
+
+  <section id="detected" hidden>
+    <details>
+      <summary id="detectedSummary"></summary>
+      <ul id="detectedList" class="detected"></ul>
+    </details>
+    <button type="button" id="clearPool" class="link">Vaciar productos guardados</button>
+  </section>
+
+  <footer>Todo se procesa en tu navegador. No se envía ningún dato a servidores externos.</footer>
+
+  <script src="outfit-core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
